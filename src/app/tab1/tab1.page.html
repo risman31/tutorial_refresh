@@ -1,17 +1,45 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Data Mahasiswa
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+<ion-content color="medium">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  
+  <ion-card>        
+    <ion-card-content>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead class="table mb-0"> 
+            <tr>
+              <th>No</th>
+                <th>NPM</th>
+                <th>Nama</th>
+                <th>Jenis Kelamin</th>
+                <th>Jurusan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tbl_mahasiswa of GETMhs; let i=index;">
+              <td>{{i+1}}</td>
+              <td>{{tbl_mahasiswa.npm}}</td>
+              <td>{{tbl_mahasiswa.nama_mahasiswa}}</td>
+              <td>{{tbl_mahasiswa.jenis_kelamin}}</td>
+              <td>{{tbl_mahasiswa.jurusan}}</td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>        
+    </ion-card-content>
+  </ion-card>
 </ion-content>
